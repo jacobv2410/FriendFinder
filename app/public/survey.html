@@ -200,34 +200,26 @@
     
     
     
-          
+        
             <script type="text/javascript">
-              // Chosen CSS
+            //   Chosen CSS
               var config = {
                 ".chosen-select": {},
-                ".chosen-select-deselect": {
-                  allow_single_deselect: true
-                },
-                ".chosen-select-no-single": {
-                  disable_search_threshold: 10
-                },
-                ".chosen-select-no-results": {
-                  no_results_text: "Oops, nothing found!"
-                },
-                ".chosen-select-width": {
-                  width: "95%"
-                }
+                ".chosen-select-deselect": { allow_single_deselect: true },
+                ".chosen-select-no-single": { disable_search_threshold: 10 },
+                ".chosen-select-no-results": { no_results_text: "Oops, nothing found!" },
+                ".chosen-select-width": { width: "95%" }
               };
           
               for (var selector in config) {
                 $(selector).chosen(config[selector]);
-              }
+              } 
           
               // Capture the form inputs
               $("#submit").on("click", function(event) {
                 event.preventDefault();
           
-                // Form validation
+                //validation
                 function validateForm() {
                   var isValid = true;
                   $(".form-control").each(function() {
@@ -245,9 +237,9 @@
                   return isValid;
                 }
           
-                // If all required fields are filled
+                // if statement that is checking to see if all the questions have been answered
                 if (validateForm()) {
-                  // Create an object for the user"s data
+                  // object for the user"s data
                   var userData = {
                     name: $("#name").val(),
                     photo: $("#photo").val(),
@@ -264,17 +256,19 @@
                       $("#q10").val()
                     ]
                   };
+
+                  var currentURL = window.location.origin
           
                   // AJAX post the data to the friends API.
-                  $.post("/api/friends", userData, function(data) {
+                  $.post(currentURL + "/api/friends", userData, function(data) {
           
-                    // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-                    $("#match-name").text(data.name);
-                    $("#match-img").attr("src", data.photo);
+                    // Grab the result from the AJAX post
+                    $("#matchName").text(data.name);
+                    $("#matchImg").attr("src", data.photo);
           
                     // Show the modal with the best match
-                    $("#results-modal").modal("toggle");
-          
+                    $("#resultsModal").modal("toggle");
+                     alert("working")
                   });
                 } else {
                   alert("Please fill out all fields before submitting!");
