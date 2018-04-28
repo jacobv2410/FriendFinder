@@ -10,7 +10,7 @@ module.exports = function(app) {
   });
   
   app.post("/api/friends", function(req, res) {
-    var friendMatch = {
+    var bestMatch = {
       name: "",
       photo: "",
       friendDifference: 1000
@@ -29,7 +29,7 @@ console.log(userscores)
       console.log(friends[i].name)
       tDiff = 0
 
-      for (var i = 0; i < friends[i].scores[i]; i++) {
+      for (var j = 0; j < friends[i].scores[j]; j++) {
         tDiff += Math.abs(parseInt(userscores[j]) - parseInt(friends[i].scores[j]))
 
         if(tDiff <= bestMatch.friendDifference) {
