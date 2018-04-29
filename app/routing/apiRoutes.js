@@ -26,7 +26,7 @@ console.log(userscores)
     var tDiff =  0
 
     for (var i = 0; i < friends.length; i++) {
-      console.log(friends[i].name)
+      console.log(friends[i])
       tDiff = 0
 
       for (var j = 0; j < friends[i].scores[j]; j++) {
@@ -39,5 +39,7 @@ console.log(userscores)
         }
       } 
     }
+   friends.push(userInfo)
+   res.json(bestMatch)
   })
 }
